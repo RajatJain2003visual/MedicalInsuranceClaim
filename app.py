@@ -59,20 +59,20 @@ def predict(s):
 
     # Encode categorical variables
     categorial_columns = ['Gender', 'Diagnosis', 'Payment Mode']
-    encoder = joblib.load('./encoder.joblib')  # Load the encoder
+    encoder = joblib.load('encoder.joblib')  # Load the encoder
     encoded_data = encoder.transform(X[categorial_columns])  # Transform categorical data
     encoded_df = pd.DataFrame(encoded_data, columns=encoder.get_feature_names_out(categorial_columns))  # Create DataFrame for encoded data
     X = pd.concat([X.drop(columns=categorial_columns), encoded_df], axis=1)  # Combine encoded data with original DataFrame
 
     # Standardize numerical features
-    scaler = joblib.load('./scaler.joblib')  # Load the scaler
+    scaler = joblib.load('scaler.joblib')  # Load the scaler
     standardized_data = scaler.transform(X[['Age', 'Services Count', 'Service Cost (Pre-Discount)', 'Discount Amount', 'Final Claim Amount']])  # Standardize data
     standardized_df = pd.DataFrame(standardized_data, columns=['Age', 'Services Count', 'Service Cost (Pre-Discount)', 'Discount Amount', 'Final Claim Amount'])  # Create DataFrame for standardized data
 
     X = pd.concat([X.drop(columns=['Age', 'Services Count', 'Service Cost (Pre-Discount)', 'Discount Amount', 'Final Claim Amount']), standardized_df], axis=1)  # Combine standardized data with original DataFrame
 
     # Load the trained model and make a prediction
-    with open('./model.pkl', 'rb') as file:
+    with open('model.pkl', 'rb') as file:
         model = pickle.load(file)  # Load the model
         fraud = model.predict(X)  # Predict fraud
 
@@ -192,9 +192,9 @@ def home():
         request.files.get('invoice').save('invoice.pdf')  # Save the uploaded PDF
         s = None
         
-        if(os.path.isfile("./invoice.pdf")):
-            print("invoice.pdf exist")
-            s = extract_info_from_pdf('./invoice.pdf')  # Extract information from the PDF
+        if(os.path.isfile("invoice.pdf")):
+            print("invoice.pdf does exist")
+            s = extract_info_from_pdf('invoice.pdf')  # Extract information from the PDF
         else:
             print("invoice.pdf does not exists")
         
