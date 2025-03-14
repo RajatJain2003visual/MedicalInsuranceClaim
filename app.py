@@ -18,7 +18,7 @@ pt.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 # Initialize the Flask application
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Secret key for session management
-app.config["MONGO_URI"] = "mongodb+srv://Rajat:2025@mongoyoutube.nqhsa.mongodb.net/Medical_Claim"  # MongoDB connection URI
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")   # MongoDB connection URI
 mongo = PyMongo(app)  # Initialize PyMongo with the Flask app
 
 @app.route('/', methods=['GET', 'POST'])
