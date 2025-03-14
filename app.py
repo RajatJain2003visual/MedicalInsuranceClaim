@@ -192,7 +192,8 @@ def home():
         request.files.get('invoice').save('invoice.pdf')  # Save the uploaded PDF
         s = None
         
-        if(os.path.isfile("invoice.pdf")):
+        if(os.path.isfile("./invoice.pdf")):
+            print("invoice.pdf exist")
             s = extract_info_from_pdf('./invoice.pdf')  # Extract information from the PDF
         else:
             print("invoice.pdf does not exists")
