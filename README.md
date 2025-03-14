@@ -19,7 +19,8 @@ Here are some screenshots of the application:
 ![Prediction Result](static/Assets/ss4.png)
 
 
-[Google Colab Link](https://colab.research.google.com/drive/1fQfSwMdc9Y91rhiTwEPupJRmwMUW4i2m?usp=sharing)
+# Start of Selection
+[![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1fQfSwMdc9Y91rhiTwEPupJRmwMUW4i2m?usp=sharing)
 
 
 ## Features
