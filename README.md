@@ -19,7 +19,7 @@ Here are some screenshots of the application:
 ![Prediction Result](static/Assets/ss4.png)
 
 
-# Start of Selection
+# See training process in Colab
 [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1fQfSwMdc9Y91rhiTwEPupJRmwMUW4i2m?usp=sharing)
 
 
