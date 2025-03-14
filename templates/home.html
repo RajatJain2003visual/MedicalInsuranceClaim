@@ -204,6 +204,29 @@
                 padding: 10px; /* Adjust button padding for mobile */
             }
         }
+
+        /* Loading animation styles */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading::after {
+            content: '';
+            border: 3px solid #f3f3f3; /* Light grey */
+            border-top: 3px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            animation: spin 1s linear infinite; /* Animation for spinning */
+            margin-left: 10px; /* Space between text and spinner */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -221,13 +244,13 @@
         </div>
 
         <div class="upload-container">
-            <form action="/home" method="POST" enctype="multipart/form-data"> <!-- Form for uploading PDF -->
+            <form id="upload-form" action="/home" method="POST" enctype="multipart/form-data"> <!-- Form for uploading PDF -->
                 <div class="upload-area" id="upload-area">
                     <p>Drag and drop your PDF here or click to upload</p> <!-- Instructions for uploading -->
                     <input type="file" name="invoice" id="invoice" required style="display: none;" accept="application/pdf"> <!-- Hidden file input -->
                 </div>
                 <input type="hidden" name="user_id" value="{{ user_id }}"> <!-- Hidden user ID field -->
-                <button type="submit">Submit</button> <!-- Submit button for the form -->
+                <button type="submit" id="submit-button">Submit</button> <!-- Submit button for the form -->
             </form>
 
             <div id="pdf-preview"> <!-- PDF preview section -->
@@ -327,6 +350,8 @@
         const fileInput = document.getElementById('invoice');
         const pdfFrame = document.getElementById('pdf-frame');
         const pdfPreview = document.getElementById('pdf-preview');
+        const submitButton = document.getElementById('submit-button');
+        const uploadForm = document.getElementById('upload-form');
 
         uploadArea.addEventListener('click', () => {
             fileInput.click();
@@ -363,6 +388,12 @@
             pdfFrame.src = fileURL;
             pdfPreview.style.display = 'block'; // Show the preview
         }
+
+        // Change button to loading state on form submit
+        uploadForm.addEventListener('submit', function() {
+            submitButton.innerHTML = 'Validation <span class="loading"></span>'; // Change button text
+            submitButton.disabled = true; // Disable button to prevent multiple submissions
+        });
 
         function toggleDetails(detailId) {
             const detailsRow = document.getElementById(detailId);
