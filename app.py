@@ -11,9 +11,14 @@ import re
 from types import NotImplementedType
 import pandas as pd
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Set the path for Tesseract OCR executable
-pt.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
+# pt.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
+if(os.name == 'nt'):
+    pt.pytesseract.tesseract_cmd = r"Tesseract-OCR\tesseract.exe"
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -82,7 +87,12 @@ def predict(s):
 
 def extract_text_from_scanned_pdf(file_path):
     # Convert PDF to images and extract text using OCR
-    images = convert_from_path(file_path, poppler_path="/usr/bin")  # Convert PDF to images
+    
+    poppler_path = "/usr/bin"
+    if(os.name == 'nt'):
+        poppler_path = r'bin'
+    print(f"Operating System = {os.name}")
+    images = convert_from_path(file_path)  # Convert PDF to images
     text = ""
     for img in images:
         text += pt.image_to_string(img)  # Extract text from each image
