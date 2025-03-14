@@ -1,0 +1,101 @@
+Patient Name,Age,Gender,Doctor,Diagnosis,Payment Mode,Insurance Provider,Policy Number,Services Count,Service Cost (Pre-Discount),Discount Applied,Discount Amount,Final Claim Amount,Remarks,"Label (0=Valid, 1=Fraud)"
+Neha Verma,4,Female,Dr. Meera Sharma,Diabetes,Credit Card,InsureWell,POL-621652,1,1734,0,0,1734,Normal case,0
+Amit Kumar,13,Male,Dr. Arjun Patel,Allergy,Online Payment,HealthPlus,POL-205773,5,4847,0,0,8161,Amount Inflated,1
+Rohit Singh,61,Other,Dr. Priyanka Rathi,Hypertension,Online Payment,HealthPlus,POL-900358,1,1514,0,0,1514,Normal case,0
+Amit Kumar,71,Female,Dr. Priyanka Rathi,Mismatch Diagnosis,Credit Card,HealthPlus,POL-432963,5,5560,1,315,5245,Diagnosis Mismatch,1
+Priya Mehta,23,Male,Dr. Kunal Desai,Migraine,Cash,InsureWell,POL-375608,1,1671,0,0,1671,Normal case,0
+Amit Kumar,38,Female,Dr. Meera Sharma,Fracture Arm,Cash,MediSecure,POL-539272,4,5771,0,0,5771,Normal case,0
+Rohit Singh,34,Other,Dr. Meera Sharma,Hypertension,Online Payment,SureHealth,POL-131921,4,3310,0,0,3310,Normal case,0
+Anjali Gupta,35,Female,Dr. Arjun Patel,Fracture Arm,Credit Card,HealthPlus,POL-166334,1,828,0,0,3130,Amount Inflated,1
+Sonal Sharma,42,Other,Dr. Priyanka Rathi,Mismatch Diagnosis,Cash,LifeCare,POL-677826,2,3109,0,0,3109,Diagnosis Mismatch,1
+Rohit Singh,82,Female,Dr. Priyanka Rathi,Fracture Arm,Insurance,LifeCare,POL-198096,1,685,1,938,-253,Normal case,0
+Rajat Jain,71,Male,Dr. Meera Sharma,Diabetes,Insurance,HealthPlus,POL-861586,4,5385,1,485,4900,Normal case,0
+Rohit Singh,71,Male,Dr. Arjun Patel,Allergy,Credit Card,InsureWell,POL-590885,3,3662,0,0,3662,Normal case,0
+Anjali Gupta,30,Male,Dr. Arjun Patel,Hypertension,Insurance,SureHealth,POL-537036,5,4311,0,0,4311,Normal case,0
+Amit Kumar,32,Male,Dr. Priyanka Rathi,Allergy,Insurance,SureHealth,POL-400144,2,3294,1,330,2964,Normal case,0
+Vikram Das,82,Female,Dr. Kunal Desai,Viral Fever,Cash,SureHealth,POL-879875,5,5591,1,329,5262,Normal case,0
+Sonal Sharma,56,Male,Dr. Kunal Desai,Migraine,Credit Card,SureHealth,POL-688785,5,4742,1,570,4172,Normal case,0
+Rohit Singh,32,Other,Dr. Kunal Desai,Fracture Arm,Cash,SureHealth,POL-376401,3,3445,0,0,3445,Normal case,0
+Sonal Sharma,56,Female,Dr. Meera Sharma,Acute Bronchitis,Online Payment,HealthPlus,POL-328602,3,4189,0,0,6850,Amount Inflated,1
+Rajat Jain,47,Other,Dr. Priyanka Rathi,Viral Fever,Credit Card,InsureWell,POL-507756,4,5326,0,0,5326,Normal case,0
+Rohit Singh,68,Female,Dr. Priyanka Rathi,Mismatch Diagnosis,Online Payment,MediSecure,POL-475905,2,2544,0,0,2544,Diagnosis Mismatch,1
+Anjali Gupta,6,Female,Dr. Arjun Patel,Viral Fever,Cash,SureHealth,POL-982392,4,5187,1,840,4347,Normal case,0
+Amit Kumar,82,Female,Dr. Arjun Patel,Mismatch Diagnosis,Online Payment,LifeCare,POL-435245,4,2520,1,300,2220,Diagnosis Mismatch,1
+Sonal Sharma,10,Female,Dr. Priyanka Rathi,Food Poisoning,Insurance,LifeCare,POL-626002,1,1267,1,918,4092,Amount Inflated,1
+Amit Kumar,43,Male,Dr. Meera Sharma,Allergy,Cash,HealthPlus,POL-380729,5,5270,0,0,8564,Amount Inflated,1
+Vikram Das,51,Other,Dr. Priyanka Rathi,Mismatch Diagnosis,Credit Card,InsureWell,POL-514019,2,2570,0,0,2570,Diagnosis Mismatch,1
+Priya Mehta,66,Other,Dr. Meera Sharma,Acute Bronchitis,Cash,HealthPlus,POL-289202,3,4086,1,555,5760,Amount Inflated,1
+Amit Kumar,86,Male,Dr. Meera Sharma,Diabetes,Cash,MediSecure,POL-506862,1,1678,0,0,1678,Normal case,0
+Priya Mehta,14,Other,Dr. Kunal Desai,Fracture Arm,Cash,SureHealth,POL-734963,4,5885,1,340,5545,Normal case,0
+Rohit Singh,62,Male,Dr. Priyanka Rathi,Food Poisoning,Cash,LifeCare,POL-893075,1,1528,0,0,1528,Normal case,0
+Anjali Gupta,12,Male,Dr. Arjun Patel,Migraine,Online Payment,LifeCare,POL-891017,4,3400,0,0,3400,Normal case,0
+Rajat Jain,24,Male,Dr. Meera Sharma,Food Poisoning,Cash,LifeCare,POL-564311,3,3894,0,0,3894,Normal case,0
+Sonal Sharma,42,Other,Dr. Arjun Patel,Viral Fever,Online Payment,HealthPlus,POL-812968,3,3915,1,691,3224,Normal case,0
+Amit Kumar,11,Other,Dr. Kunal Desai,Allergy,Insurance,MediSecure,POL-169946,4,5337,1,568,4769,Normal case,0
+Amit Kumar,77,Female,Dr. Priyanka Rathi,Diabetes,Insurance,InsureWell,POL-663456,5,5890,0,0,5890,Normal case,0
+Vikram Das,6,Female,Dr. Kunal Desai,Viral Fever,Cash,LifeCare,POL-888293,4,4374,1,621,3753,Normal case,0
+Priya Mehta,12,Male,Dr. Arjun Patel,Mismatch Diagnosis,Credit Card,MediSecure,POL-203738,4,5142,1,36,5106,Diagnosis Mismatch,1
+Neha Verma,6,Female,Dr. Priyanka Rathi,Hypertension,Insurance,InsureWell,POL-433873,5,7558,0,0,7558,Normal case,0
+Vikram Das,65,Female,Dr. Priyanka Rathi,Hypertension,Online Payment,MediSecure,POL-911135,2,3365,0,0,3365,Normal case,0
+Neha Verma,83,Male,Dr. Meera Sharma,Fracture Arm,Credit Card,HealthPlus,POL-830346,4,4468,1,321,8714,Amount Inflated,1
+Rohit Singh,25,Female,Dr. Arjun Patel,Mismatch Diagnosis,Online Payment,InsureWell,POL-447336,4,3416,0,0,3416,Diagnosis Mismatch,1
+Anjali Gupta,33,Male,Dr. Priyanka Rathi,Acute Bronchitis,Online Payment,SureHealth,POL-827849,5,5435,1,973,8526,Amount Inflated,1
+Priya Mehta,64,Female,Dr. Meera Sharma,Viral Fever,Credit Card,LifeCare,POL-160950,4,5745,0,0,5745,Normal case,0
+Amit Kumar,64,Male,Dr. Meera Sharma,Mismatch Diagnosis,Insurance,SureHealth,POL-165987,4,3727,0,0,3727,Diagnosis Mismatch,1
+Neha Verma,71,Other,Dr. Arjun Patel,Fracture Arm,Online Payment,InsureWell,POL-568233,4,5834,1,339,8119,Amount Inflated,1
+Vikram Das,38,Female,Dr. Meera Sharma,Viral Fever,Credit Card,HealthPlus,POL-719111,4,2839,1,640,5115,Amount Inflated,1
+Anjali Gupta,86,Female,Dr. Arjun Patel,Food Poisoning,Online Payment,MediSecure,POL-521721,5,4986,0,0,4986,Normal case,0
+Priya Mehta,6,Male,Dr. Kunal Desai,Acute Bronchitis,Online Payment,MediSecure,POL-963917,1,685,1,344,341,Normal case,0
+Anjali Gupta,12,Female,Dr. Kunal Desai,Fracture Arm,Online Payment,SureHealth,POL-119128,5,6668,1,702,5966,Normal case,0
+Rohit Singh,34,Male,Dr. Kunal Desai,Mismatch Diagnosis,Credit Card,LifeCare,POL-373104,1,1084,0,0,1084,Diagnosis Mismatch,1
+Sonal Sharma,63,Other,Dr. Arjun Patel,Mismatch Diagnosis,Credit Card,SureHealth,POL-179452,3,4538,1,38,4500,Diagnosis Mismatch,1
+Anjali Gupta,55,Male,Dr. Priyanka Rathi,Migraine,Insurance,MediSecure,POL-294303,2,1794,1,884,910,Normal case,0
+Amit Kumar,67,Other,Dr. Arjun Patel,Food Poisoning,Insurance,MediSecure,POL-735074,5,6521,0,0,6521,Normal case,0
+Sonal Sharma,83,Male,Dr. Priyanka Rathi,Acute Bronchitis,Online Payment,SureHealth,POL-416939,2,1057,0,0,5443,Amount Inflated,1
+Sonal Sharma,6,Other,Dr. Arjun Patel,Fracture Arm,Cash,MediSecure,POL-894446,4,4391,0,0,4391,Normal case,0
+Anjali Gupta,12,Female,Dr. Arjun Patel,Hypertension,Insurance,MediSecure,POL-605751,3,3566,1,116,3450,Normal case,0
+Priya Mehta,62,Female,Dr. Kunal Desai,Fracture Arm,Cash,MediSecure,POL-672706,2,3265,0,0,7549,Amount Inflated,1
+Priya Mehta,47,Male,Dr. Priyanka Rathi,Migraine,Insurance,InsureWell,POL-123856,1,1091,1,753,338,Normal case,0
+Priya Mehta,14,Other,Dr. Priyanka Rathi,Mismatch Diagnosis,Online Payment,LifeCare,POL-695873,4,5482,1,899,4583,Diagnosis Mismatch,1
+Vikram Das,49,Female,Dr. Kunal Desai,Fracture Arm,Cash,InsureWell,POL-459466,3,3250,0,0,3250,Normal case,0
+Amit Kumar,47,Female,Dr. Meera Sharma,Migraine,Online Payment,InsureWell,POL-353163,3,1891,1,391,1500,Normal case,0
+Rajat Jain,30,Female,Dr. Kunal Desai,Hypertension,Credit Card,HealthPlus,POL-403054,2,3080,1,207,2873,Normal case,0
+Rajat Jain,16,Other,Dr. Arjun Patel,Hypertension,Insurance,SureHealth,POL-222227,3,2827,0,0,5628,Amount Inflated,1
+Rajat Jain,2,Male,Dr. Meera Sharma,Allergy,Online Payment,SureHealth,POL-966862,2,3199,1,320,2879,Normal case,0
+Vikram Das,39,Male,Dr. Arjun Patel,Food Poisoning,Cash,MediSecure,POL-512723,2,2453,0,0,2453,Normal case,0
+Rajat Jain,74,Other,Dr. Kunal Desai,Viral Fever,Online Payment,MediSecure,POL-302869,4,4880,1,848,6739,Amount Inflated,1
+Priya Mehta,90,Other,Dr. Priyanka Rathi,Allergy,Online Payment,SureHealth,POL-649773,2,2579,1,895,1684,Normal case,0
+Rohit Singh,22,Male,Dr. Priyanka Rathi,Diabetes,Online Payment,MediSecure,POL-285100,2,2475,0,0,2475,Normal case,0
+Vikram Das,85,Other,Dr. Priyanka Rathi,Food Poisoning,Insurance,LifeCare,POL-625566,2,3272,0,0,3272,Normal case,0
+Priya Mehta,56,Other,Dr. Meera Sharma,Acute Bronchitis,Insurance,MediSecure,POL-708829,3,4632,0,0,7060,Amount Inflated,1
+Neha Verma,73,Female,Dr. Priyanka Rathi,Mismatch Diagnosis,Insurance,HealthPlus,POL-382936,3,1951,1,52,1899,Diagnosis Mismatch,1
+Rajat Jain,50,Male,Dr. Kunal Desai,Allergy,Cash,HealthPlus,POL-219291,1,487,0,0,487,Normal case,0
+Rajat Jain,36,Other,Dr. Meera Sharma,Hypertension,Cash,SureHealth,POL-815480,3,3031,0,0,3031,Normal case,0
+Priya Mehta,86,Other,Dr. Priyanka Rathi,Food Poisoning,Credit Card,MediSecure,POL-590039,4,6758,0,0,6758,Normal case,0
+Vikram Das,61,Female,Dr. Meera Sharma,Fracture Arm,Insurance,InsureWell,POL-582139,3,4039,1,327,3712,Normal case,0
+Vikram Das,8,Male,Dr. Meera Sharma,Fracture Arm,Insurance,SureHealth,POL-275332,3,3957,0,0,3957,Normal case,0
+Amit Kumar,63,Female,Dr. Priyanka Rathi,Acute Bronchitis,Cash,HealthPlus,POL-147447,1,1552,1,901,651,Normal case,0
+Sonal Sharma,29,Other,Dr. Meera Sharma,Acute Bronchitis,Cash,InsureWell,POL-746947,4,2973,1,74,2899,Normal case,0
+Rajat Jain,6,Female,Dr. Meera Sharma,Acute Bronchitis,Online Payment,SureHealth,POL-738900,5,6341,0,0,8779,Amount Inflated,1
+Vikram Das,81,Male,Dr. Kunal Desai,Migraine,Online Payment,MediSecure,POL-261287,4,4191,0,0,4191,Normal case,0
+Rohit Singh,11,Other,Dr. Arjun Patel,Diabetes,Insurance,InsureWell,POL-372616,3,2835,1,208,2627,Normal case,0
+Priya Mehta,75,Other,Dr. Kunal Desai,Diabetes,Credit Card,InsureWell,POL-467485,4,4471,0,0,4471,Normal case,0
+Neha Verma,8,Other,Dr. Kunal Desai,Viral Fever,Online Payment,HealthPlus,POL-707269,4,4889,0,0,4889,Normal case,0
+Rajat Jain,26,Female,Dr. Meera Sharma,Acute Bronchitis,Online Payment,MediSecure,POL-102817,5,6755,1,345,6410,Normal case,0
+Rajat Jain,88,Female,Dr. Priyanka Rathi,Fracture Arm,Credit Card,HealthPlus,POL-127353,2,3133,1,649,6234,Amount Inflated,1
+Amit Kumar,67,Female,Dr. Meera Sharma,Viral Fever,Credit Card,MediSecure,POL-948533,4,4686,0,0,8201,Amount Inflated,1
+Sonal Sharma,70,Other,Dr. Arjun Patel,Hypertension,Online Payment,MediSecure,POL-249259,3,2717,1,109,2608,Normal case,0
+Sonal Sharma,85,Female,Dr. Arjun Patel,Diabetes,Cash,InsureWell,POL-287053,4,5527,1,271,5256,Normal case,0
+Rohit Singh,54,Other,Dr. Arjun Patel,Migraine,Credit Card,HealthPlus,POL-679502,2,1553,1,260,1293,Normal case,0
+Neha Verma,84,Male,Dr. Meera Sharma,Hypertension,Credit Card,InsureWell,POL-998628,2,2022,0,0,2022,Normal case,0
+Priya Mehta,6,Female,Dr. Meera Sharma,Food Poisoning,Cash,HealthPlus,POL-374420,3,4545,1,869,3676,Normal case,0
+Vikram Das,64,Other,Dr. Arjun Patel,Food Poisoning,Credit Card,HealthPlus,POL-355976,3,2373,0,0,5480,Amount Inflated,1
+Anjali Gupta,1,Male,Dr. Meera Sharma,Diabetes,Online Payment,MediSecure,POL-354415,2,1271,0,0,5625,Amount Inflated,1
+Priya Mehta,58,Male,Dr. Kunal Desai,Fracture Arm,Credit Card,HealthPlus,POL-291189,3,2839,1,576,6334,Amount Inflated,1
+Neha Verma,67,Other,Dr. Kunal Desai,Diabetes,Online Payment,InsureWell,POL-172056,2,2174,0,0,2174,Normal case,0
+Vikram Das,56,Other,Dr. Arjun Patel,Allergy,Credit Card,MediSecure,POL-462985,5,6078,1,879,5199,Normal case,0
+Priya Mehta,32,Other,Dr. Arjun Patel,Viral Fever,Cash,HealthPlus,POL-997167,2,3188,1,608,2580,Normal case,0
+Priya Mehta,90,Female,Dr. Meera Sharma,Allergy,Credit Card,MediSecure,POL-944630,3,3565,1,265,3300,Normal case,0
+Amit Kumar,34,Male,Dr. Arjun Patel,Food Poisoning,Cash,MediSecure,POL-259281,1,1972,0,0,5218,Amount Inflated,1
+Anjali Gupta,12,Other,Dr. Meera Sharma,Acute Bronchitis,Online Payment,HealthPlus,POL-678669,3,3229,0,0,3229,Normal case,0
+Priya Mehta,72,Female,Dr. Arjun Patel,Food Poisoning,Credit Card,LifeCare,POL-293673,5,5919,0,0,5919,Normal case,0
