@@ -3,6 +3,21 @@
 ## Overview
 ArogyaId is a web application designed to facilitate the submission and processing of medical claims. Users can upload PDF documents containing their medical claims, and the application extracts relevant information using Optical Character Recognition (OCR) with Tesseract. The extracted data is then used to predict the validity of the claim.
 
+## Screenshots
+Here are some screenshots of the application:
+
+### Login Page
+![Login Page](static/Assets/screenshots/ss1.png)  
+
+### Home Page
+![Home Page](static/Assets/screenshots/ss2.png)  
+
+### PDF Upload
+![PDF Upload](static/Assets/screenshots/ss3.png) 
+
+### Prediction Result
+![Prediction Result](static/Assets/screenshots/ss4.png)
+
 ## Features
 - User registration and login functionality.
 - PDF upload for medical claims.
@@ -76,21 +91,6 @@ The model was trained using the following steps:
 3. Register a new account or log in with an existing account.
 
 4. Upload your medical claim PDF and view the extracted information and prediction results.
-
-## Screenshots
-Here are some screenshots of the application:
-
-### Login Page
-![Login Page](static\assets\screenshots\ss1.png)  
-
-### Home Page
-![Home Page](static\assets\screenshots\ss2.png)  
-
-### PDF Upload
-![PDF Upload](static\assets\screenshots\ss3.png) 
-
-### Prediction Result
-![Prediction Result](static\assets\screenshots\ss3.png)  
 
 ## Contributing
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any bugs or feature requests.
