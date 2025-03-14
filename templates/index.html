@@ -87,6 +87,10 @@
             <button id="showRegister">Register</button> <!-- Button to show the registration form -->
         </div>
 
+        {% if response %}
+            <h1 style="color: rgb(255, 79, 79);">{{ response }}</h1>
+        {% endif %}
+
         <div class="form-container">
             <!-- Registration Form -->
             <form action="/register" method="post" id="register_form" class="hidden">

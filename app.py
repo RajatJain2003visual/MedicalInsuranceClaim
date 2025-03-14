@@ -40,7 +40,7 @@ def login_registration():
             session['full_name'] = full_name  # Store full name in session
             return redirect(url_for('home'))  # Redirect to home page
         else:
-            return "Account doesn't exist"  # Return error if user not found
+            return render_template('index.html',response="Account doesn't exist") # Return error if user not found
 
     return render_template('index.html')  # Render the login/registration page
 
