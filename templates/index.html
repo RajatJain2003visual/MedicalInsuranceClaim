@@ -128,5 +128,12 @@
             document.getElementById('login_form').classList.add('hidden');
         };
     </script>
+
+    <!-- Prevent resubmission when reloading page -->
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 </body>
 </html> 
