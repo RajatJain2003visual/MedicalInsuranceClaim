@@ -1,6 +1,5 @@
 # Use an official Python image with Debian base
-FROM FROM python:3.11-slim
-
+FROM python:3.11-slim
 # Install system dependencies for Poppler and Tesseract
 RUN apt-get update && apt-get install -y \
     poppler-utils \
