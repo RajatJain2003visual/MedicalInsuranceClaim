@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5;url={{ url_for('redirect_home') }}">
+    <title>Document</title>
+</head>
+<body>
+    Registration successful, redirecting in <span id="time">5</span> seconds
+    <script>
+        let countdown = 5;
+        const timer = setInterval(() => {
+            countdown--;
+            document.getElementById('time').innerText = countdown;
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = '/home'; // Redirect to home after countdown
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

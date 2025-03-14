@@ -1,0 +1,306 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArogyaId - Medical Claim WebApplication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Light gray background for the body */
+        }
+
+        .header {
+            background-color: #007BFF; /* Blue color for header */
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between; /* Space between title and logout button */
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0; /* Remove default margin */
+            font-size: 1.5em; /* Font size for the header */
+        }
+
+        .header .logout {
+            background-color: #28a745; /* Green color for logout button */
+            color: white;
+            border: none;
+            padding: 10px 15px; /* Padding for the button */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        .header .logout:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        .upload-container {
+            margin: 20px auto; /* Center the upload container */
+            padding: 20px;
+            background: white; /* White background for the upload area */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            text-align: center; /* Center text in the upload container */
+            width: 80%; /* Width of the upload container */
+            max-width: 600px; /* Maximum width */
+        }
+
+        .upload-area {
+            border: 2px dashed #007BFF; /* Blue dashed border for upload area */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px; /* Padding inside the upload area */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        .upload-area:hover {
+            background-color: #e7f3ff; /* Light blue on hover */
+        }
+
+        #pdf-preview {
+            margin-top: 20px; /* Space above the PDF preview */
+            display: none; /* Hide preview initially */
+        }
+
+        #pdf-preview iframe {
+            width: 100%; /* Full width for the PDF iframe */
+            height: 400px; /* Height of the PDF iframe */
+            border: none; /* No border for the iframe */
+        }
+
+        button[type="submit"] {
+            border-radius: 8px; /* Rounded corners for buttons */
+            height: auto;
+            padding: 15px; /* Increased padding for bigger buttons */
+            font-size: large; /* Font size for buttons */
+            background-color: #28a745; /* Green color for buttons */
+            color: white; /* White text color */
+            border: none; /* No border */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            width: 100%; /* Full width for buttons */
+            margin: 10px 0; /* Space between buttons */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        /* Styles for the results table */
+        .results {
+            margin-top: 20px; /* Space above results section */
+            padding: 15px; /* Padding inside results section */
+            background: #e7f3ff; /* Light blue background for results */
+            border-radius: 10px; /* Rounded corners */
+            text-align: left; /* Left-align text in results */
+        }
+
+        .results table {
+            width: 100%; /* Full width for results table */
+            border-collapse: collapse; /* Collapse borders */
+        }
+
+        .results th, .results td {
+            border: 1px solid #007BFF; /* Blue border for table cells */
+            padding: 10px; /* Padding inside table cells */
+            text-align: left; /* Left-align text in table cells */
+        }
+
+        .results th {
+            background-color: #007BFF; /* Blue background for table header */
+            color: white; /* White text color for header */
+        }
+
+        .result-text {
+            font-size: 1.5em; /* Larger text size for result header */
+            font-weight: bold; /* Bold text */
+            margin-top: 20px; /* Space above result header */
+        }
+
+        .predict-text {
+            font-size: 2em; /* Larger text size for prediction */
+            font-weight: bold; /* Bold text */
+            text-align: center; /* Center the prediction text */
+            margin-top: 20px; /* Space above prediction text */
+        }
+
+        .predict-valid {
+            color: #28a745; /* Green color for valid prediction */
+        }
+
+        .predict-invalid {
+            color: red; /* Red color for invalid prediction */
+        }
+    </style>
+</head>
+<body>
+    {% if full_name %}
+        <div class="header">
+            <h1>ArogyaId: Medical Claim WebApplication</h1> <!-- Main title of the application -->
+            <span>User: {{ full_name }}</span> <!-- Display the logged-in user's name -->
+            <form action='\logout' method="get"> <!-- Logout form -->
+                <button type="submit" class="logout">Logout</button> <!-- Logout button -->
+            </form>
+        </div>
+
+        <div class="upload-container">
+            <form action="/home" method="POST" enctype="multipart/form-data"> <!-- Form for uploading PDF -->
+                <div class="upload-area" id="upload-area">
+                    <p>Drag and drop your PDF here or click to upload</p> <!-- Instructions for uploading -->
+                    <input type="file" name="invoice" id="invoice" required style="display: none;" accept="application/pdf"> <!-- Hidden file input -->
+                </div>
+                <input type="hidden" name="user_id" value="{{ user_id }}"> <!-- Hidden user ID field -->
+                <button type="submit">Submit</button> <!-- Submit button for the form -->
+            </form>
+
+            <div id="pdf-preview"> <!-- PDF preview section -->
+                <h3>PDF Preview:</h3>
+                <iframe id="pdf-frame"></iframe> <!-- Iframe for displaying the PDF -->
+            </div>
+        </div>
+
+        <!-- Display the prediction result -->
+        {% if predict %}
+            <div class="predict-text {% if predict == 'Claim is invalid' %}predict-invalid{% else %}predict-valid{% endif %}">
+                {{ predict }}
+            </div>
+        {% endif %}
+
+        <!-- Results Section -->
+        <div class="results">
+            <h3 class="result-text">Info:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if info %}
+                        {% for key, value in info.items() %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Previous Submissions Section -->
+        <div class="results">
+            <h3 class="result-text">Previous Submissions:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Submission Date</th>
+                        <th>Claim Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for submission in previous_submissions %}
+                    <tr>
+                        <td>{{ submission['date'] }}</td>
+                        <td>{{ 'Claim is valid' if submission['valid'] == 1 else 'Claim is invalid' }}</td>
+                        <td>
+                            <button onclick="toggleDetails('details-{{ loop.index }}')">See More Info</button>
+                        </td>
+                    </tr>
+                    <tr id="details-{{ loop.index }}" style="display:none;">
+                        <td colspan="3">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Key</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if submission['info'] is not none %}
+                                        {% for key, value in submission['info'].items() %}
+                                        <tr>
+                                            <td>{{ key }}</td>
+                                            <td>{{ value }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="2">No information available.</td>
+                                        </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <script>
+            window.location.href = "{{ url_for('login_registration') }}";
+        </script>
+    
+    {% endif %}
+        
+    <script>
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('invoice');
+        const pdfFrame = document.getElementById('pdf-frame');
+        const pdfPreview = document.getElementById('pdf-preview');
+
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.backgroundColor = '#e7f3ff'; // Change color on drag over
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.backgroundColor = 'white'; // Reset color
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.backgroundColor = 'white'; // Reset color
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files; // Set the file input
+                previewPDF(files[0]); // Preview the PDF
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = e.target.files;
+            if (files.length > 0) {
+                previewPDF(files[0]); // Preview the PDF
+            }
+        });
+
+        function previewPDF(file) {
+            const fileURL = URL.createObjectURL(file);
+            pdfFrame.src = fileURL;
+            pdfPreview.style.display = 'block'; // Show the preview
+        }
+
+        function toggleDetails(detailId) {
+            const detailsRow = document.getElementById(detailId);
+            if (detailsRow.style.display === "none") {
+                detailsRow.style.display = "table-row"; // Show details
+            } else {
+                detailsRow.style.display = "none"; // Hide details
+            }
+        }
+    </script>
+</body>
+</html>
