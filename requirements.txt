@@ -5,3 +5,4 @@ joblib
 pytesseract
 pdf2image
 Pillow
+gunicorn

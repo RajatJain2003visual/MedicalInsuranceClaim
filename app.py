@@ -10,6 +10,7 @@ import pytesseract as pt
 import re
 from types import NotImplementedType
 import pandas as pd
+import os
 
 # Set the path for Tesseract OCR executable
 pt.pytesseract.tesseract_cmd = r'Tesseract-OCR\tesseract.exe'
@@ -244,4 +245,4 @@ def logout():
     return redirect(url_for('login_registration'))  # Redirect to login/registration page
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Run the Flask application in debug mode
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))  # Run the Flask application on Render platform
