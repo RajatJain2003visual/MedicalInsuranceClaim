@@ -194,6 +194,9 @@ def home():
         result = ""
         fraud = None
 
+        print("Printing Extracted info ")
+        print(s)
+
         if s is None or None in s:
             result = "Info for prediction can't be extracted"  # Handle case where info extraction fails
             return render_template('home.html', full_name=full_name, user_id=username, predict=result, previous_submissions=previous_submissions)
