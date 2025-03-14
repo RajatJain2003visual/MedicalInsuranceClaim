@@ -7,16 +7,16 @@ ArogyaId is a web application designed to facilitate the submission and processi
 Here are some screenshots of the application:
 
 ### Login Page
-![Login Page](static/Assets/screenshots/ss1.png)  
+![Login Page](static/Assets/ss1.png)  
 
 ### Home Page
-![Home Page](static/Assets/screenshots/ss2.png)  
+![Home Page](static/Assets/ss2.png)  
 
 ### PDF Upload
-![PDF Upload](static/Assets/screenshots/ss3.png) 
+![PDF Upload](static/Assets/ss3.png) 
 
 ### Prediction Result
-![Prediction Result](static/Assets/screenshots/ss4.png)
+![Prediction Result](static/Assets/ss4.png)
 
 ## Features
 - User registration and login functionality.
