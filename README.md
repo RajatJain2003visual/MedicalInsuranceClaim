@@ -22,6 +22,8 @@ Here are some screenshots of the application:
 # See training process in Colab
 [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1fQfSwMdc9Y91rhiTwEPupJRmwMUW4i2m?usp=sharing)
 
+## Dataset
+The dataset used for training the model can be found [here](https://raw.githubusercontent.com/RajatJain2003visual/MedicalInsuranceClaim/main/enhanced_invoice_dataset.csv).
 
 ## Features
 - User registration and login functionality.
