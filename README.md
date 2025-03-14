@@ -18,6 +18,10 @@ Here are some screenshots of the application:
 ### Prediction Result
 ![Prediction Result](static/Assets/ss4.png)
 
+
+[Google Colab Link](https://colab.research.google.com/drive/1fQfSwMdc9Y91rhiTwEPupJRmwMUW4i2m?usp=sharing)
+
+
 ## Features
 - User registration and login functionality.
 - PDF upload for medical claims.
