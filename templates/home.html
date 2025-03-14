@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4; /* Light gray background for the body */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         .header {
@@ -16,13 +17,17 @@
             color: white;
             padding: 15px;
             display: flex;
+            flex-direction: row; /* Default to row layout for larger screens */
+            align-items: center; /* Center items */
             justify-content: space-between; /* Space between title and logout button */
-            align-items: center;
+            width: 100%; /* Ensure header takes full width */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .header h1 {
             margin: 0; /* Remove default margin */
             font-size: 1.5em; /* Font size for the header */
+            text-align: center; /* Center the title */
         }
 
         .header .logout {
@@ -33,6 +38,7 @@
             border-radius: 5px; /* Rounded corners */
             cursor: pointer; /* Pointer cursor on hover */
             transition: background-color 0.3s; /* Smooth transition for hover effect */
+            margin-top: 10px; /* Space above the button */
         }
 
         .header .logout:hover {
@@ -43,6 +49,7 @@
             margin-top: 10px; /* Space above the message */
             font-size: 0.9em; /* Font size for the message */
             color: #fff; /* White text color */
+            text-align: center; /* Center the message */
         }
 
         .download-button {
@@ -67,8 +74,9 @@
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
             text-align: center; /* Center text in the upload container */
-            width: 80%; /* Width of the upload container */
+            width: 90%; /* Width of the upload container */
             max-width: 600px; /* Maximum width */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .upload-area {
@@ -77,6 +85,8 @@
             padding: 20px; /* Padding inside the upload area */
             cursor: pointer; /* Pointer cursor on hover */
             transition: background-color 0.3s; /* Smooth transition for hover effect */
+            width: 100%; /* Full width for upload area */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .upload-area:hover {
@@ -106,6 +116,7 @@
             transition: background-color 0.3s; /* Smooth transition for hover effect */
             width: 100%; /* Full width for buttons */
             margin: 10px 0; /* Space between buttons */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         button[type="submit"]:hover {
@@ -119,6 +130,8 @@
             background: #e7f3ff; /* Light blue background for results */
             border-radius: 10px; /* Rounded corners */
             text-align: left; /* Left-align text in results */
+            width: 100%; /* Full width for results section */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .results table {
@@ -157,13 +170,47 @@
         .predict-invalid {
             color: red; /* Red color for invalid prediction */
         }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            #heading{
+                margin-top: 20px;
+            }
+
+            #user{
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            .header {
+                flex-direction: column; /* Change to column layout on mobile */
+                align-items: center; /* Center items */
+                margin-top: 0px; /* Increase top margin for mobile header */
+            }
+
+            .header h1 {
+                font-size: 1.2em; /* Smaller font size for mobile */
+            }
+
+            .upload-container {
+                width: 95%; /* Full width on mobile */
+            }
+
+            .upload-area {
+                padding: 15px; /* Adjust padding for mobile */
+            }
+
+            button[type="submit"] {
+                padding: 10px; /* Adjust button padding for mobile */
+            }
+        }
     </style>
 </head>
 <body>
     {% if full_name %}
         <div class="header">
-            <h1>ArogyaId: Medical Claim WebApplication</h1> <!-- Main title of the application -->
-            <span>User: {{ full_name }}</span> <!-- Display the logged-in user's name -->
+            <h1 id="heading">ArogyaId: Medical Claim WebApplication</h1> <!-- Main title of the application -->
+            <span id="user">User: {{ full_name }}</span> <!-- Display the logged-in user's name -->
             <div class="invoice-format">
                 Invoice must be in this format: 
                 <a href="https://raw.githubusercontent.com/RajatJain2003visual/MedicalInsuranceClaim/main/Structured_Sample_Invoice.docx" class="download-button" download>Download</a> <!-- Update the path to your invoice format PDF -->
@@ -172,7 +219,6 @@
                 <button type="submit" class="logout">Logout</button> <!-- Logout button -->
             </form>
         </div>
-
 
         <div class="upload-container">
             <form action="/home" method="POST" enctype="multipart/form-data"> <!-- Form for uploading PDF -->
@@ -274,7 +320,6 @@
         <script>
             window.location.href = "{{ url_for('login_registration') }}";
         </script>
-    
     {% endif %}
         
     <script>
