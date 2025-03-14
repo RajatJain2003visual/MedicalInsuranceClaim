@@ -39,6 +39,27 @@
             background-color: #218838; /* Darker green on hover */
         }
 
+        .invoice-format {
+            margin-top: 10px; /* Space above the message */
+            font-size: 0.9em; /* Font size for the message */
+            color: #fff; /* White text color */
+        }
+
+        .download-button {
+            background-color: #ffc107; /* Yellow color for download button */
+            color: white;
+            border: none;
+            padding: 10px 15px; /* Padding for the button */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            margin-left: 10px; /* Space between message and button */
+        }
+
+        .download-button:hover {
+            background-color: #e0a800; /* Darker yellow on hover */
+        }
+
         .upload-container {
             margin: 20px auto; /* Center the upload container */
             padding: 20px;
@@ -143,10 +164,15 @@
         <div class="header">
             <h1>ArogyaId: Medical Claim WebApplication</h1> <!-- Main title of the application -->
             <span>User: {{ full_name }}</span> <!-- Display the logged-in user's name -->
+            <div class="invoice-format">
+                Invoice must be in this format: 
+                <a href="https://raw.githubusercontent.com/RajatJain2003visual/MedicalInsuranceClaim/main/Structured_Sample_Invoice.docx" class="download-button" download>Download</a> <!-- Update the path to your invoice format PDF -->
+            </div>
             <form action='\logout' method="get"> <!-- Logout form -->
                 <button type="submit" class="logout">Logout</button> <!-- Logout button -->
             </form>
         </div>
+
 
         <div class="upload-container">
             <form action="/home" method="POST" enctype="multipart/form-data"> <!-- Form for uploading PDF -->
