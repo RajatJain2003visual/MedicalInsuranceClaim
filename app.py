@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, session
+from flask import Flask, render_template, request, url_for, redirect, session, flash, get_flashed_messages
 import time
 import jinja2
 from flask_pymongo import PyMongo
@@ -26,8 +26,15 @@ app.secret_key = 'your_secret_key'  # Secret key for session management
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")   # MongoDB connection URI
 mongo = PyMongo(app)  # Initialize PyMongo with the Flask app
 
+message_for_login_registration = False
+
 @app.route('/', methods=['GET', 'POST'])
 def login_registration():
+    messages = get_flashed_messages()
+    if messages:
+        return render_template('index.html', response=messages[0])  # Render with the flash message
+    
+    
     # Handle user login and registration
     if request.method == 'POST':
         username = request.form.get('username')  # Get username from form
@@ -242,7 +249,8 @@ def add_data():
         full_name = request.form.get('full_name')  # Get full name from form
 
         if mongo.db.User.find_one({'username':username}):
-            return render_template('index.html',response="Username already exist")
+            flash("Account already exists")
+            return redirect(url_for('login_registration'))
 
         mongo.db.User.insert_one(
             {
