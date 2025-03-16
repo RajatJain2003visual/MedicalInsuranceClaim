@@ -240,6 +240,10 @@ def add_data():
         username = request.form.get('username')  # Get username from form
         password = request.form.get('password')  # Get password from form
         full_name = request.form.get('full_name')  # Get full name from form
+
+        if mongo.db.User.find_one({'username':username}):
+            return render_template('index.html',response="Username already exist")
+
         mongo.db.User.insert_one(
             {
                 'username': username,  # Store username
