@@ -6,8 +6,8 @@ import os
 
 # load_dotenv()
 
-def extract_info_from_text(extracted_text, API_key):
-    GROQ_API_KEY = API_key
+def extract_info_from_text(extracted_text):
+    GROQ_API_KEY = os.getenv("API_KEY")
 
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
@@ -79,7 +79,7 @@ def check_insufficient_info(dict):
 
 
 def extractFeatures(txt, api_key):
-    extracted_text = extract_info_from_text(txt, os.getenv("API_KEY"))
+    extracted_text = extract_info_from_text(txt)
 
     x = re.search(r"```python(.*?)```", extracted_text, re.DOTALL)
     if x:
