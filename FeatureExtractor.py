@@ -4,7 +4,7 @@ import ast
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+# load_dotenv()
 
 def extract_info_from_text(extracted_text, API_key):
     GROQ_API_KEY = API_key
