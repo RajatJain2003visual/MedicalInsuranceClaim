@@ -4,112 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArogyaId</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            margin: 0; /* Remove default margin */
-            overflow-x: hidden; /* Prevent scrolling */
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)); /* Add a background image if desired */
-            backdrop-filter: blur(10px);
-            color: #333;
-            font-family: Arial, sans-serif;
-        }
-
-        #container {
-            text-align: center; /* Center text in the container */
-        }
-
-        #header {
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            color: #007BFF; /* Blue color for the title */
-            font-size: 2.5em; /* Increased font size for the company name */
-        }
-
-        .form-container {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            margin: 0 auto; /* Center the form container */
-        }
-
-        input {
-            width: 100%; /* Full width for input fields */
-            padding: 10px; /* Padding for input fields */
-            margin: 10px 0; /* Space between input fields */
-            border: 1px solid #ccc; /* Light gray border */
-            border-radius: 8px; /* Rounded corners */
-            font-size: 1em; /* Font size */
-            transition: border-color 0.3s; /* Transition for border color */
-        }
-
-        input:focus {
-            border-color: #007BFF; /* Change border color on focus */
-            outline: none; /* Remove default outline */
-        }
-
-        button {
-            border-radius: 8px; /* More rectangular shape */
-            height: auto;
-            padding: 15px; /* Increased padding for bigger buttons */
-            font-size: large;
-            background-color: #28a745; /* Green color for buttons */
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.1s; /* Reduced duration to 100 milliseconds */
-            width: 100%; /* Full width for buttons */
-            margin: 10px 0; /* Space between buttons */
-        }
-
-        button:hover {
-            background-color: #218838; /* Darker green on hover */
-        }
-
-        .hidden {
-            display: none; /* Class to hide elements */
-        }
-
-    @media (max-width: 600px) {
-        body {
-            font-size: 14px; /* Adjust font size for mobile */
-        }
-
-        .form-container {
-            width: 70%; /* Make form container wider on mobile */
-            padding: 15px; /* Reduce padding for mobile */
-        }
-
-        input {
-            font-size: 1em; /* Ensure input font size is appropriate */
-        }
-
-        #showLogin, #showRegister, button {
-            width:50%;
-            font-size: medium; /* Adjust button font size for mobile */
-        }
-
-        #header h1 {
-            font-size: 2em; /* Adjust title size for mobile */
-        }
-
-    }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div id="container">
         <div id="header">
-            <h1>ArogyaId</h1> <!-- Main title of the application -->
-            <button id="showLogin">Login</button> <!-- Button to show the login form -->
-            <button id="showRegister">Register</button> <!-- Button to show the registration form -->
+            <h1>ArogyaId</h1>
+            <div class="header-buttons">
+                <button id="showLogin">Login</button>
+                <button id="showRegister">Register</button>
+            </div>
         </div>
 
         {% if response %}
@@ -117,21 +21,19 @@
         {% endif %}
 
         <div class="form-container">
-            <!-- Registration Form -->
             <form action="/register" method="post" id="register_form" class="hidden">
                 <label for="full_name">Full Name:</label>
-                <input type="text" id="full_name" name="full_name" required>
+                <input type="text" id="full_name" name="full_name" required pattern="\S(.*\S)?" title="Cannot be empty or contain only spaces">
 
                 <label for="username">User Name:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" required pattern="\S(.*\S)?" title="Cannot be empty or contain only spaces">
 
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required pattern="\S(.*\S)?" title="Cannot be empty or contain only spaces">
 
-                <button type="submit">Submit</button> <!-- Submit button for registration -->
+                <button type="submit">Submit</button>
             </form>
 
-            <!-- Login Form -->
             <form action="/" method="POST" id="login_form" class="hidden">
                 <label for="login_username">User Name:</label>
                 <input type="text" id="login_username" name="username" required>
@@ -139,30 +41,11 @@
                 <label for="login_password">Password:</label>
                 <input type="password" id="login_password" name="password" required>
 
-                <button type="submit">Login</button> <!-- Submit button for login -->
+                <button type="submit">Login</button>
             </form>
         </div>
     </div>
 
-    <script>
-        // Show the login form and hide the registration form
-        document.getElementById('showLogin').onclick = function() {
-            document.getElementById('login_form').classList.remove('hidden');
-            document.getElementById('register_form').classList.add('hidden');
-        };
-
-        // Show the registration form and hide the login form
-        document.getElementById('showRegister').onclick = function() {
-            document.getElementById('register_form').classList.remove('hidden');
-            document.getElementById('login_form').classList.add('hidden');
-        };
-    </script>
-
-    <!-- Prevent resubmission when reloading page -->
-    <script>
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }
-    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </body>
 </html> 

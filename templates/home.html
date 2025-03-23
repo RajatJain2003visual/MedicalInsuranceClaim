@@ -232,41 +232,35 @@
 <body>
     {% if full_name %}
         <div class="header">
-            <h1 id="heading">ArogyaId: Medical Claim WebApplication</h1> <!-- Main title of the application -->
-            <span id="user">User: {{ full_name }}</span> <!-- Display the logged-in user's name -->
-            <div class="invoice-format">
-                Invoice must be in this format: 
-                <a href="https://raw.githubusercontent.com/RajatJain2003visual/MedicalInsuranceClaim/main/Structured_Sample_Invoice.docx" class="download-button" download>Download</a> <!-- Update the path to your invoice format PDF -->
-            </div>
-            <form action='\logout' method="get"> <!-- Logout form -->
-                <button type="submit" class="logout">Logout</button> <!-- Logout button -->
+            <h1 id="heading">ArogyaId: Medical Claim WebApplication</h1>
+            <span id="user">User: {{ full_name }}</span>
+            <form action='\logout' method="get">
+                <button type="submit" class="logout">Logout</button>
             </form>
         </div>
 
         <div class="upload-container">
-            <form id="upload-form" action="/home" method="POST" enctype="multipart/form-data"> <!-- Form for uploading PDF -->
+            <form id="upload-form" action="/home" method="POST" enctype="multipart/form-data">
                 <div class="upload-area" id="upload-area">
-                    <p>Drag and drop your PDF here or click to upload</p> <!-- Instructions for uploading -->
-                    <input type="file" name="invoice" id="invoice" required style="display: none;" accept="application/pdf"> <!-- Hidden file input -->
+                    <p>Drag and drop your PDF here or click to upload</p>
+                    <input type="file" name="invoice" id="invoice" required style="display: none;" accept="application/pdf">
                 </div>
-                <input type="hidden" name="user_id" value="{{ user_id }}"> <!-- Hidden user ID field -->
-                <button type="submit" id="submit-button">Submit</button> <!-- Submit button for the form -->
+                <input type="hidden" name="user_id" value="{{ user_id }}">
+                <button type="submit" id="submit-button">Submit</button>
             </form>
 
-            <div id="pdf-preview"> <!-- PDF preview section -->
+            <div id="pdf-preview">
                 <h3>PDF Preview:</h3>
-                <iframe id="pdf-frame"></iframe> <!-- Iframe for displaying the PDF -->
+                <iframe id="pdf-frame"></iframe>
             </div>
         </div>
 
-        <!-- Display the prediction result -->
         {% if predict %}
             <div class="predict-text {% if predict == 'Claim is invalid' %}predict-invalid{% else %}predict-valid{% endif %}">
                 {{ predict }}
             </div>
         {% endif %}
 
-        <!-- Results Section -->
         <div class="results">
             <h3 class="result-text">Info:</h3>
             <table>
@@ -289,7 +283,6 @@
             </table>
         </div>
 
-        <!-- Previous Submissions Section -->
         <div class="results">
             <h3 class="result-text">Previous Submissions:</h3>
             <table>

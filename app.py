@@ -12,8 +12,10 @@ from types import NotImplementedType
 import pandas as pd
 import os
 from dotenv import load_dotenv
+from FeatureExtractor import extractFeatures
 
-load_dotenv()
+
+# load_dotenv()
 
 # Set the path for Tesseract OCR executable
 # pt.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
@@ -22,6 +24,8 @@ if(os.name == 'nt'):
 
 # Initialize the Flask application
 app = Flask(__name__)
+# run_with_ngrok(app)
+
 app.secret_key = 'your_secret_key'  # Secret key for session management
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")   # MongoDB connection URI
 mongo = PyMongo(app)  # Initialize PyMongo with the Flask app
@@ -108,90 +112,7 @@ def extract_text_from_scanned_pdf(file_path):
 def extract_info_from_pdf(file_path):
     # Extract relevant information from the PDF
     s = extract_text_from_scanned_pdf(file_path)  # Extract text from the PDF
-
-    # Initialize variables for extracted information
-    patient_name, patient_age, patient_gender, policy_number, doctor_name, diagnosis, discount_applied, discount_amount, final_claim_amount, payment_mode, insurance_provider, services_count, services_cost_prediscount = [None] * 13
-
-    # Extract patient name and age
-    match = re.search(r"Patient Name:\s*(.+?)\s+Age:\s*(\d+)", s)
-    if match:
-        patient_name = match.group(1)
-        patient_age = match.group(2)
-        print(f"Patient Name: {patient_name}")
-        print(f"Patient Age: {patient_age}")
-    else:
-        print("Patient name and age can't be found")
-
-    # Extract gender and policy number
-    match = re.search(r"Gender:\s*(.+?)\s+Policy Number:\s*(.+?)\s*[\n]", s)
-    if match:
-        patient_gender = match.group(1)
-        policy_number = match.group(2)
-        print(f"Patient Gender: {patient_gender}")
-        print(f"Policy Number: {policy_number}")
-    else:
-        print("Patient gender can't be found")
-
-    # Extract doctor's name and diagnosis
-    match = re.search(r'Doctor\s*:\s*(.*?)\s+Diagnosis\s*:\s*(.*)', s)
-    if match:
-        doctor_name = match.group(1)
-        diagnosis = match.group(2)
-        print("Doctor:", doctor_name)
-        print("Diagnosis:", diagnosis)
-
-    # Extract payment details
-    match = re.search(
-        r'Discount Applied:\s*(Yes|No)\s*'
-        r'Discount Amount:\s*INR\s*(\d+)\s*'
-        r'Final Claim Amount:\s*INR\s*(\d+)\s*'
-        r'Payment Mode:\s*(\w+)\s*'
-        r'Insurance Provider:\s*([^\n\r]*)',
-        s
-    )
-
-    if match:
-        discount_applied = 1 if match.group(1) == 'Yes' else 0
-        discount_amount = match.group(2)
-        final_claim_amount = match.group(3)
-        payment_mode = match.group(4)
-        insurance_provider = match.group(5)
-
-        print("Discount Applied:", discount_applied)
-        print("Discount Amount:", discount_amount)
-        print("Final Claim Amount:", final_claim_amount)
-        print("Payment Mode:", payment_mode)
-        print("Insurance Provider:", insurance_provider)
-    else:
-        print("Payment details not found")
-
-    # Extract service lines
-    service_lines = re.findall(r'Service Cost \(INR\)\s*(.*?)Service Cost \(Pre-Discount\)', s, re.DOTALL)
-    if service_lines:
-        services = re.findall(r'(.*?)\s+\d+', service_lines[0])  # Extract service names
-        services_count = len(services)  # Count the number of services
-
-        total_pre_discount = re.search(r'Service Cost \(Pre-Discount\)\s*(\d+)', s)
-        services_cost_prediscount = int(total_pre_discount.group(1)) if total_pre_discount else 0  # Get pre-discount service cost
-
-        print("Services Count:", services_count)
-        print("Service Cost (Pre-Discount):", services_cost_prediscount)
-
-        return {
-            'patient_name': patient_name,
-            'patient_age': patient_age,
-            'patient_gender': patient_gender,
-            'doctor_name': doctor_name,
-            'diagnosis': diagnosis,
-            'payment_mode': payment_mode,
-            'insurance_provider': insurance_provider,
-            'policy_number': policy_number,
-            'services_count': services_count,
-            'services_cost_prediscount': services_cost_prediscount,
-            'discount_applied': discount_applied,
-            'discount_amount': discount_amount,
-            'final_claim_amount': final_claim_amount
-        }
+    return extractFeatures(s)
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
@@ -208,10 +129,10 @@ def home():
     if request.method == 'POST':
         request.files.get('invoice').save('invoice.pdf')  # Save the uploaded PDF
         s = None
-        
+        msg = None
         if(os.path.isfile("invoice.pdf")):
             print("invoice.pdf does exist")
-            s = extract_info_from_pdf('invoice.pdf')  # Extract information from the PDF
+            s,msg = extract_info_from_pdf('invoice.pdf')  # Extract information from the PDF
         else:
             print("invoice.pdf does not exists")
         
@@ -225,6 +146,15 @@ def home():
         if s is None or None in s:
             result = "Info for prediction can't be extracted"  # Handle case where info extraction fails
             return render_template('home.html', full_name=full_name, user_id=username, predict=result, previous_submissions=previous_submissions)
+
+        if msg != "":
+            result = msg  # Handle case where info extraction fails
+            return render_template('home.html', full_name=full_name, user_id=username, predict=result, previous_submissions=previous_submissions)
+
+        elif s['diagnosis'] == 'Not Found':
+            result = "Critical information Missing : Diagnosis not found"  # Handle case where info extraction fails
+            return render_template('home.html', full_name=full_name, user_id=username, predict=result, previous_submissions=previous_submissions)
+
 
         else:
             fraud = predict(s)  # Make a prediction based on extracted info
@@ -242,30 +172,45 @@ def home():
 
 @app.route('/register', methods=['POST'])
 def add_data():
-    # Handle user registration
     if request.method == 'POST':
-        username = request.form.get('username')  # Get username from form
-        password = request.form.get('password')  # Get password from form
-        full_name = request.form.get('full_name')  # Get full name from form
+        username = request.form.get('username', '').strip()
+        password = request.form.get('password', '').strip()
+        full_name = request.form.get('full_name', '').strip()
 
-        if mongo.db.User.find_one({'username':username}):
-            flash("Account already exists")
+        # Validate input
+        if not username or not password or not full_name:
+            flash("All fields must contain non-empty values")
             return redirect(url_for('login_registration'))
 
-        mongo.db.User.insert_one(
-            {
-                'username': username,  # Store username
-                'password': password,  # Store password
-                'full_name': full_name  # Store full name
-            }
-        )
+        # Validate minimum lengths
+        if len(full_name) < 2:
+            flash("Full name must be at least 2 characters long")
+            return redirect(url_for('login_registration'))
 
-        session['username'] = username  # Store username in session
-        session['full_name'] = full_name  # Store full name in session
+        if len(username) < 3:
+            flash("Username must be at least 3 characters long")
+            return redirect(url_for('login_registration'))
 
-        return render_template('registration_successful.html')  # Render success page
+        if len(password) < 6:
+            flash("Password must be at least 6 characters long")
+            return redirect(url_for('login_registration'))
+
+        if mongo.db.User.find_one({'username': username}):
+            flash("Username not available")
+            return redirect(url_for('login_registration'))
+
+        mongo.db.User.insert_one({
+            'username': username,
+            'password': password,
+            'full_name': full_name
+        })
+
+        session['username'] = username
+        session['full_name'] = full_name
+
+        return render_template('registration_successful.html')
     
-    return 'No path exist'  # Return error if no path exists
+    return 'No path exists'
 
 @app.route('/redirect_home')
 def redirect_home():
@@ -279,3 +224,4 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))  # Run the Flask application on Render platform
+    # app.run(debug=True)
