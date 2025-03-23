@@ -51,4 +51,81 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
+
+    // PDF upload handling
+    const uploadArea = document.getElementById('upload-area');
+    const fileInput = document.getElementById('invoice');
+    const pdfFrame = document.getElementById('pdf-frame');
+    const pdfPreview = document.getElementById('pdf-preview');
+    const submitButton = document.getElementById('submit-button');
+    const uploadForm = document.getElementById('upload-form');
+
+    function validateFileType(file) {
+        const validTypes = ['application/pdf'];
+        if (!validTypes.includes(file.type)) {
+            alert('Please upload a PDF file only!');
+            return false;
+        }
+        return true;
+    }
+
+    function previewPDF(file) {
+        const fileURL = URL.createObjectURL(file);
+        pdfFrame.src = fileURL;
+        pdfPreview.style.display = 'block';
+    }
+
+    uploadArea.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.style.backgroundColor = '#e7f3ff';
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.style.backgroundColor = 'white';
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.style.backgroundColor = 'white';
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            if (validateFileType(files[0])) {
+                fileInput.files = files;
+                previewPDF(files[0]);
+            }
+        }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            if (validateFileType(files[0])) {
+                previewPDF(files[0]);
+            } else {
+                e.target.value = '';
+            }
+        }
+    });
+
+    // Form submission handling
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', function() {
+            submitButton.innerHTML = 'Validation <span class="loading"></span>';
+            submitButton.disabled = true;
+        });
+    }
+
+    // Toggle details function for previous submissions
+    window.toggleDetails = function(detailId) {
+        const detailsRow = document.getElementById(detailId);
+        if (detailsRow.style.display === "none") {
+            detailsRow.style.display = "table-row";
+        } else {
+            detailsRow.style.display = "none";
+        }
+    }
 });

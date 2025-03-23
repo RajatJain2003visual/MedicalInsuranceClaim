@@ -243,7 +243,7 @@
             <form id="upload-form" action="/home" method="POST" enctype="multipart/form-data">
                 <div class="upload-area" id="upload-area">
                     <p>Drag and drop your PDF here or click to upload</p>
-                    <input type="file" name="invoice" id="invoice" required style="display: none;" accept="application/pdf">
+                    <input type="file" name="invoice" id="invoice" required style="display: none;" accept=".pdf,application/pdf">
                 </div>
                 <input type="hidden" name="user_id" value="{{ user_id }}">
                 <button type="submit" id="submit-button">Submit</button>
