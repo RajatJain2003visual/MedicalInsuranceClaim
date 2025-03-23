@@ -78,7 +78,7 @@ def check_insufficient_info(dict):
             dict.get('services_count') == 0)
 
 
-def extractFeatures(txt, api_key):
+def extractFeatures(txt):
     extracted_text = extract_info_from_text(txt)
 
     x = re.search(r"```python(.*?)```", extracted_text, re.DOTALL)
